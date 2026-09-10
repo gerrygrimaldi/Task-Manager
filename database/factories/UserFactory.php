@@ -5,7 +5,6 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 // La factory per il modello User è responsabile della generazione di dati fittizi da inserire nel database per gli utenti
 class UserFactory extends Factory

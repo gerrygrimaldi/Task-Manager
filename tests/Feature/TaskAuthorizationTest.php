@@ -4,11 +4,10 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase; // Questa è la classe base dei test in Laravel, basata su PHPUnit.
 use App\Models\Task;
-use App\Models\User;
+use App\Models\User; // Questa è la classe base dei test in Laravel, basata su PHPUnit.
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class TaskAuthorizationTest extends TestCase
 {

@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
 
-            /* 
+            /*
                 Il comando seguente corrisponde automaticamente a:
                 $table->foreign('user_id')
                     ->references('id')

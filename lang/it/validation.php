@@ -1,4 +1,5 @@
 <?php
+
 /*
     Questo file contiene le traduzioni in italiano dei messaggi di errore di validazione.
     ":attribute" è un segnaposto che viene sostituito con il nome del campo che ha generato l'errore.

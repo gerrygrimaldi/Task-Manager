@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class TaskPolicy
 {
@@ -35,7 +34,7 @@ class TaskPolicy
         return $user->id === $task->user_id;
     }
 
-    //L'utente può eliminare il task?
+    // L'utente può eliminare il task?
     public function delete(User $user, Task $task): bool
     {
         // Solo se l'ID dell'utente corrisponde all'ID dell'utente associato al task.

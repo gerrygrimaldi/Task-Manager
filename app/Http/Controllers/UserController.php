@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Http\Requests\RegisterUserRequest;
 use App\Http\Requests\LoginUserRequest;
+use App\Http\Requests\RegisterUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,7 +41,7 @@ class UserController extends Controller
         $credentials = $request->validated();
 
         // Si tenta di autenticare l'utente con le credenziali fornite.
-        if (!Auth::attempt($credentials)) {
+        if (! Auth::attempt($credentials)) {
             // Se le credenziali non sono corrette, si ritorna indietro con un messaggio di errore.
             return back()
                 ->withErrors([

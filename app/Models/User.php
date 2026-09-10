@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -17,7 +17,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    // Si evita che la password possa essere accidentalmente esposta 
+    // Si evita che la password possa essere accidentalmente esposta
     protected $hidden = [
         'password',
     ];
