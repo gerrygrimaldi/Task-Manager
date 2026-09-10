@@ -53,7 +53,7 @@ class UserController extends Controller
         // In caso di successo, si crea una nuova sessione per l'utente autenticato.
         $request->session()->regenerate();
 
-        // L'utente viene reindirizzato alla lista dei task.
+        // L'utente viene reindirizzato alla lista dei task, e con intended() eventualmente alla specifica funzionalità richiesta (es. sessione scaduta)
         return redirect()->intended(route('tasks.index'));
     }
 

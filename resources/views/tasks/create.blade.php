@@ -4,111 +4,96 @@
 
 @section('content')
 
-    <h1>Nuova task</h1>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
 
-    <form method="POST" action="{{ route('tasks.store') }}">
-        @csrf
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
 
-        <div class="form-group">
-            <label for="title">Titolo</label>
+                    <h1 class="h3 mb-4">Nuova task</h1>
 
-            <input
-                type="text"
-                id="title"
-                name="title"
-                value="{{ old('title') }}"
-                required
-            >
+                    <form method="POST" action="{{ route('tasks.store') }}">
+                        @csrf
 
-            @error('title')
-                <div class="error">{{ $message }}</div>
-            @enderror
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Titolo</label>
+
+                            <input type="text" id="title"name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" required>
+
+                            @error('title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrizione</label>
+
+                            <textarea id="description" name="description" rows="4" class="form-control @error('description') is-invalid @enderror">{{ old('description') }}</textarea>
+
+                            @error('description')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="due_date" class="form-label">Data di scadenza</label>
+
+                            <input type="date" id="due_date" name="due_date" value="{{ old('due_date') }}" class="form-control @error('due_date') is-invalid @enderror" required>
+
+                            @error('due_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="priority" class="form-label">Priorità</label>
+
+                            <select id="priority" name="priority" class="form-select @error('priority') is-invalid @enderror" required>
+                                <option value="">Seleziona una priorità</option>
+
+                                <option value="low" @selected(old('priority') === 'low')>Bassa</option>
+
+                                <option value="medium" @selected(old('priority') === 'medium')>Media</option>
+
+                                <option value="high" @selected(old('priority') === 'high')>Alta</option>
+                            </select>
+
+                            @error('priority')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="status" class="form-label">Stato</label>
+
+                            <select id="status" name="status" class="form-select @error('status') is-invalid @enderror" required>
+                                <option value="">Seleziona uno stato</option>
+
+                                <option value="todo" @selected(old('status') === 'todo')>Da fare</option>
+
+                                <option value="in_progress" @selected(old('status') === 'in_progress')>In corso</option>
+
+                                <option value="completed" @selected(old('status') === 'completed')>Completata</option>
+                            </select>
+
+                            @error('status')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        {{-- "justify-content-between" serve per allineare i pulsanti all'estrema sinistra e destra del contenitore --}}
+                        <div class="d-flex justify-content-between gap-2">
+                            <button type="submit" class="btn btn-primary">Crea task</button>
+
+                            <a href="{{ route('tasks.index') }}" class="btn btn-secondary">Annulla</a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
         </div>
-
-        <div class="form-group">
-            <label for="description">Descrizione</label>
-
-            <textarea
-                id="description"
-                name="description"
-            >{{ old('description') }}</textarea>
-
-            @error('description')
-                <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="due_date">Data di scadenza</label>
-
-            <input
-                type="date"
-                id="due_date"
-                name="due_date"
-                value="{{ old('due_date') }}"
-                required
-            >
-
-            @error('due_date')
-                <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="priority">Priorità</label>
-
-            <select id="priority" name="priority" required>
-                <option value="">Seleziona una priorità</option>
-
-                <option value="low" @selected(old('priority') === 'low')>
-                    Bassa
-                </option>
-
-                <option value="medium" @selected(old('priority') === 'medium')>
-                    Media
-                </option>
-
-                <option value="high" @selected(old('priority') === 'high')>
-                    Alta
-                </option>
-            </select>
-
-            @error('priority')
-                <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <div class="form-group">
-            <label for="status">Stato</label>
-
-            <select id="status" name="status" required>
-                <option value="">Seleziona uno stato</option>
-
-                <option value="todo" @selected(old('status') === 'todo')>
-                    Da fare
-                </option>
-
-                <option value="in_progress" @selected(old('status') === 'in_progress')>
-                    In corso
-                </option>
-
-                <option value="completed" @selected(old('status') === 'completed')>
-                    Completata
-                </option>
-            </select>
-
-            @error('status')
-                <div class="error">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <button type="submit">
-            Crea task
-        </button>
-
-        <a href="{{ route('tasks.index') }}">
-            Annulla
-        </a>
-    </form>
+    </div>
 
 @endsection

@@ -17,7 +17,7 @@ return [
     'unique' => 'Il valore del campo :attribute è già stato utilizzato.',
     'confirmed' => 'I campi password non corrispondono.',
     'date' => 'Il campo :attribute non contiene una data valida.',
-    'after_or_equal' => 'Il campo :attribute deve essere una data successiva o uguale a quella odierna: :date.',
+    'after_or_equal' => 'Il campo :attribute deve essere una data successiva o uguale a quella odierna.',
     'in' => 'Il valore selezionato per :attribute non è valido.',
 
     // Elenco dei nomi specificati nei campi dei form e riutilizzati mediante il metodo rules() dei Form Request.
