@@ -21,7 +21,7 @@
         <div class="card shadow-sm">
             <div class="card-body p-0">
 
-                <div class="table-responsive"> <!-- La tabella rimane utilizzabile anche su schermi piccoli -->
+                <div class="table-responsive"> {{-- La tabella rimane utilizzabile anche su schermi piccoli --}}
 
                     <table class="table table-striped table-hover align-middle mb-0">
 

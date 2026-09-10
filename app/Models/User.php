@@ -4,19 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
+    // Definizione dei campi che possono essere assegnati
     protected $fillable = [
         'name',
         'email',
         'password',
     ];
 
+    // Si evita che la password possa essere accidentalmente esposta 
     protected $hidden = [
         'password',
     ];
@@ -25,11 +26,11 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'password' => 'hashed', // Con questo comando la password viene automaticamente hashata quando viene salvata nel database
+            'password' => 'hashed', // Con questo comando la password viene automaticamente cifrata quando viene salvata nel database
         ];
     }
 
-    // Ogni utente può avere più task associati, quindi si definisce la relazione "hasMany" con il modello Task.
+    // Ogni utente può avere più task a lui associati, quindi si definisce la relazione "hasMany" con il modello Task.
     public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);

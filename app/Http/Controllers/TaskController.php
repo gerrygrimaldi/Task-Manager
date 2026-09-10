@@ -23,7 +23,7 @@ class TaskController extends Controller
         $tasks = $request->user()->tasks()->get();
 
         return view('tasks.index', [
-            'tasks' => $tasks,
+            'tasks' => $tasks, // La variabile sarà utilizzata dalla vista per mostrare la lista dei task
         ]);
     }
 
@@ -33,7 +33,7 @@ class TaskController extends Controller
         // L'utente deve avere il permesso di creare un nuovo task, quindi viene chiamato il metodo create() di TaskPolicy.
         $this->authorize('create', Task::class);
 
-        return view('tasks.create');
+        return view('tasks.create');  // Vista di creazione di un nuovo task
     }
 
     // Questo metodo si occupa di creare un nuovo task associato all'utente autenticato.
@@ -47,7 +47,7 @@ class TaskController extends Controller
         // L'utente viene reindirizzato alla lista dei task con un messaggio di conferma.
         return redirect()
             ->route('tasks.index')
-            ->with('success', 'Task creata con successo.');
+            ->with('success', 'Task creata con successo.'); // with() mi consente di mostrare un messaggio di conferma nella vista da mostrare
     }
 
     // Questo metodo si occupa di mostrare il form di modifica del task.
@@ -56,7 +56,7 @@ class TaskController extends Controller
         $this->authorize('update', $task); // Viene chiamato il metodo update() di TaskPolicy
 
         return view('tasks.edit', [
-            'task' => $task,
+            'task' => $task, // La vista riceverà lo specifico task da modificare, così da poter precompilare il form con i dati esistenti
         ]);
     }
 

@@ -21,7 +21,7 @@ class TaskAuthorizationTest extends TestCase
 
         $this->actingAs($unknownUser); // Ora ci identifichiamo come il secondo utente fittizio
 
-        // route() chiama il metodo route() in web.php che fa riferimento al metodo edit di TaskController e infine mostrare la pagina di modifica del task
+        // route() chiama il metodo corrispondente in web.php che fa riferimento al metodo edit di TaskController, mostrando la pagina di modifica del task
         $response = $this->get(route('tasks.edit', $task)); // Proviamo ad accedere alla pagina di modifica del task creato dal primo utente
 
         // Il risultato atteso è true, cioè la visualizzazione della pagina di modifica del task deve essere impedita

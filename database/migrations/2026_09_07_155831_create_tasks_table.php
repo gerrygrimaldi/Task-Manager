@@ -4,11 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+// La migrazione serve per creare le tabelle nel database, in questo caso la tabella "tasks" che conterrà le attività degli utenti
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    // Se la migrazione viene eseguita, il metodo "up" viene chiamato per creare la tabella "tasks" con le colonne specificate
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
@@ -40,9 +39,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+    // Se la migrazione viene annullata, il metodo "down" viene chiamato per eliminare la tabella "tasks" dal database
     public function down(): void
     {
         Schema::dropIfExists('tasks');

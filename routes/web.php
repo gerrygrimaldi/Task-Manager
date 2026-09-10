@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 // Route per mostrare il form di registrazione dell'utente.
 Route::get('/register', [UserController::class, 'showRegisterForm'])
-    ->middleware('guest')
+    ->middleware('guest') // Il middleware 'guest' assicura che solo gli utenti non autenticati possano accedere a questa route
     ->name('register'); // name() è utile affinché nel codice si possa fare riferimento alla route con route('register')
 
 // Route per la registrazione di un nuovo utente.
@@ -41,6 +41,7 @@ Route::post('/logout', [UserController::class, 'logout'])
     Tutte le routes per la gestione dei task richiedono che l'utente sia autenticato.
     Questo comando genera automaticamente le seguenti routes per il controller TaskController:
     - GET /tasks -> index() : per ottenere la lista di tutti i task
+    - GET /tasks/create -> create() : per mostrare il form di creazione di un nuovo task
     - POST /tasks -> store() : per creare un nuovo task
     - GET /tasks/{task}/edit -> edit() : per mostrare il form di modifica di un task specifico
     - PUT/PATCH /tasks/{task} -> update() : per aggiornare un task esistente

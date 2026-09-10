@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Task extends Model
 {
-    use HasFactory;
+    use HasFactory; // Verrà usato nei test automatici per generare dati fittizi per i task
 
+    // Definisce quali attributi possono essere definiti dall'utente quando crea o aggiorna un task
     protected $fillable = [
         'title',
         'description',

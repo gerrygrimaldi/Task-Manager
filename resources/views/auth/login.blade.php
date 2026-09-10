@@ -23,7 +23,7 @@
 
                             <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required>
 
-                            {{-- Messaggio in caso di errore dovuto all'errato contenuto del form --}}
+                            {{-- Messaggio in caso di errore dovuto all'errato contenuto del campo --}}
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

@@ -11,7 +11,7 @@ class StoreTaskRequest extends FormRequest
     public function authorize(): bool
     {
         // $this->user() è un metodo ereditato da Request che restituisce l'utente autenticato che sta effettuando la richiesta.
-        return $this->user()->can('create', Task::class);
+        return $this->user()->can('create', Task::class); // can() controlla le regole definite in TaskPolicy
     }
 
     // Questo metodo restituisce le regole di validazione che si applicano alla richiesta di creazione di un task.
