@@ -1,58 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Task Manager
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Web application sviluppata con **Laravel** per la gestione di una lista personale di attività (*task*), con possibilità di creazione, modifica ed eliminazione.
 
-## About Laravel
+Ogni task è associata all'utente che l'ha creata e può essere caratterizzata da titolo, descrizione, data di scadenza, priorità e stato. L'applicazione esegue inoltre la validazione dei dati lato server e controlli di autenticazione e autorizzazione, garantendo che ogni utente possa accedere e modificare esclusivamente le proprie attività.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Funzionalità
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Autenticazione
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Il sistema presenta le seguenti funzionalità di autenticazione:
 
-## Learning Laravel
+- Registrazione, login e logout di un utente.
+- Validazione server-side dei dati di registrazione.
+- Hashing delle password tramite le funzionalità native di Laravel.
+- Protezione delle pagine riservate mediante middleware `auth`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Gestione dei task
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+L'utente autenticato può eseguire le seguenti operazioni:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- visualizzare l'elenco dei propri task;
+- creare un nuovo task;
+- modificare un task esistente;
+- eliminare un task previa conferma.
 
-## Agentic Development
+Ogni task è associato all'utente che l'ha creata e contiene i seguenti dati:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+- **Titolo**
+- **Descrizione**, opzionale
+- **Data di scadenza**
+- **Priorità**: bassa, media o alta
+- **Stato**: da fare, in corso o completato
+
+I task appartenenti ad altri utenti non possono essere visualizzati, modificati o eliminati, nemmeno nel caso in cui l'ID del task venga inserito manualmente nell'URL.
+
+## Requisiti
+
+Per eseguire il progetto sono necessari:
+
+- **PHP 8.3** o superiore
+- **Composer**
+- **Docker**
+- **Docker Compose**
+
+L'utilizzo di Docker permette di eseguire l'applicazione all'interno di un ambiente di sviluppo configurato e riproducibile.
+
+## Tecnologie utilizzate
+Per la realizzazione del progetto, sono state utilizzate le seguenti tecnologie:
+
+- **PHP 8.5**: linguaggio di programmazione server-side utilizzato per la logica di backend dell'applicazione;
+- **Laravel 13**: framework PHP per lo sviluppo web, utilizzato per la realizzazione della web app secondo il pattern MVC (Model-View-Controller);
+- **Blade**: motore di template di Laravel, utilizzato per la creazione delle viste dell'applicazione;
+- **MySQL 8.4**: sistema di gestione di database relazionali;
+- **HTML/CSS**: markup e stili per la creazione delle interfacce utente;
+- **Bootstrap 5.3**: framework CSS per la creazione di interfacce utente responsive e moderne;
+- **Docker**: piattaforma per la creazione e gestione di container, utilizzata per realizzare un ambiente di sviluppo isolato per il testing dell'applicazione, in particolare mediante l'utilizzo del tool **Docker Compose**;
+- **PHPUnit**: framework per la realizzazione di test automatici del codice PHP, utilizzato in particolare per verificare la corretta gestione dell'autenticazione e dell'autorizzazione degli utenti;
+- **Laravel Pint**: tool per il linting del codice PHP secondo le best practices di Laravel.
+
+## Installazione
+
+### Clonazione del repository
+
+Clonare il repository e accedere alla directory del progetto:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/gerrygrimaldi/Task-Manager.git task-manager
+cd task-manager
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Installazione delle dipendenze
 
-## Contributing
+Le dipendenze PHP del progetto sono gestite tramite **Composer**. Se il progetto viene eseguito direttamente sull'host, possono essere installate con il comando:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+composer install
+```
 
-## Code of Conduct
+Nell'ambiente Docker, esso viene eseguito automaticamente durante la build del container dell'applicazione.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+La directory `vendor` non è inclusa nel repository e viene generata automaticamente durante l'installazione delle dipendenze.
 
-## Security Vulnerabilities
+### Configurazione dell'ambiente
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Per poter avviare l'applicazione, è necessario innanzitutto configurare l'ambiente copiando il file `.env.example` in `.env`:
 
-## License
+```bash
+cp .env.example .env
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Generare quindi la chiave dell'applicazione:
+
+```bash
+php artisan key:generate
+```
+
+Il progetto è stato configurato per utilizzare **MySQL** come sistema di gestione di database, pertanto nel file `.env` saranno presenti le seguenti impostazioni di connessione al database MySQL:
+
+```text
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=task_manager
+DB_USERNAME=task_manager
+DB_PASSWORD=task_manager_password
+```
+
+## Avvio dell'ambiente Docker
+
+Il progetto è stato configurato per essere eseguito all'interno di un ambiente di sviluppo basato su **Docker Compose**. Si presuppone pertanto che Docker e Docker Compose siano già installati sulla macchina host. La configurazione dei servizi è definita nel file `compose.yaml`, che include:
+- un container per l'applicazione Laravel;
+- un container per il database MySQL;
+- un container per la visualizzazione del database tramite **phpMyAdmin**.
+
+Per creare e avviare i container, eseguire:
+
+```bash
+docker compose up -d --build
+```
+Con questo comando, Docker Compose ricostruisce l'immagine dell'applicazione utilizzando il `Dockerfile` presente nella directory del progetto e avvia i container in background. L'applicazione sarà quindi accessibile all'indirizzo `http://localhost:8000`, mentre phpMyAdmin sarà accessibile all'indirizzo `http://localhost:8080`.
+
+Per arrestare l'ambiente:
+
+```bash
+docker compose down
+```
+
+Per visualizzare i log dei container:
+
+```bash
+docker compose logs -f
+```
+
+## Database
+All'interno della rete Docker, il database MySQL è raggiungibile dall'applicazione tramite il nome del servizio `mysql` sulla porta `3306`.
+
+Le tabelle del database che saranno utilizzate dall'applicazione possono essere create tramite le **migration** di Laravel, richiamabili con il comando:
+
+```bash
+docker compose exec app php artisan migrate
+```
+
+> **Nota**
+>
+> Se si esegue il progetto senza Docker, il database MySQL deve essere installato e configurato manualmente sulla macchina host. Le impostazioni di connessione nel file `.env` devono essere modificate di conseguenza.
+>
+> Le migration possono essere eseguite con:
+>
+> ```bash
+> php artisan migrate
+> ```
+>
+> Inoltre, per eseguire l'applicazione in locale, è necessario avviare il server di sviluppo Laravel con il comando:
+>
+> ```bash
+> php artisan serve
+> ```
+
+## Queue Worker
+
+L'applicazione non utilizza attualmente job o code per l'esecuzione di operazioni in background. Tuttavia, per completezza, è possibile avviare un worker delle code con il comando:
+
+```bash
+php artisan queue:work
+```
+
+Il comando non è necessario per il normale funzionamento dell'applicazione.
+
+## Testing
+
+Il progetto include test automatici realizzati con il framework di Laravel basato su **PHPUnit**, con lo scopo di verificare il corretto funzionamento di alcune funzionalità critiche dell'applicazione. Per eseguire la suite di test, eseguire il comando:
+
+```bash
+php artisan test
+```
+
+## Scelte implementative
+
+L'applicazione è stata sviluppata seguendo la struttura e le convenzioni del framework Laravel.
+
+In particolare:
+
+- i controller ricevono le richieste HTTP, interagiscono con i model e restituiscono le risposte mediante viste Blade;
+- i model rappresentano le singole entità del database, e quindi le classi mediante le quali è possibile interagire direttamente con le tabelle del database per eseguire le operazioni CRUD sui dati;
+- le viste Blade rappresentano la logica di presentazione dei dati, ossia la parte dell'applicazione che l'utente finale visualizza e con cui interagisce;
+- le Form Request centralizzano la validazione dei dati in ingresso e, per le operazioni sui task, verificano che l'utente sia autorizzato a eseguire l'operazione richiesta;
+- la policy TaskPolicy definisce le regole di autorizzazione per le operazioni sui task;
+- le migration definiscono la struttura del database, creando e modificando le tabelle necessarie per il funzionamento dell'applicazione.
+
+Il progetto è stato sviluppato senza utilizzare pacchetti aggiuntivi, implementando le funzionalità richieste utilizzando gli strumenti forniti nativamente da Laravel.
